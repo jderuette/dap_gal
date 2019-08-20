@@ -26,15 +26,19 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 
 import fr.houseofcode.dap.server.gal.google.Utils;
 
+//TODO gal by Djer |Audit Code| (re)-active PMD et Checkstyle. Commentaire Javadoc (de classe) manquant.
 /**
- * @author Alex
  *
+ * @author Alex
  */
 @Controller
 public class GoogleAccount {
 
+    //TODO gal by Djer |Audit Code| (re)-active PMD et Checkstyle. Commentaire Javadoc (d'attribut) manquant.
     private static final Logger LOG = LogManager.getLogger();
+    //TODO gal by Djer |Audit Code| (re)-active PMD et Checkstyle. Commentaire Javadoc (d'attribut) manquant.
     private static final int SENSIBLE_DATA_FIRST_CHAR = 0;
+    //TODO gal by Djer |Audit Code| (re)-active PMD et Checkstyle. Commentaire Javadoc (d'attribut) manquant.
     private static final int SENSIBLE_DATA_LAST_CHAR = 5;
 
     /**
@@ -141,7 +145,7 @@ public class GoogleAccount {
     /**
      * Add a Google account (user will be prompt to connect and accept required
      * access).
-     * @param userId  the user to store Data
+     * @param userKey  the user to store Data
      * @param request the HTTP request
      * @param session the HTTP session
      * @param httpTransport 
@@ -150,7 +154,7 @@ public class GoogleAccount {
      */
     @RequestMapping("/account/add/{userId}")
     public String addAccount(@PathVariable("userId") final String userKey, final HttpServletRequest request,
-            final HttpSession session, Object httpTransport) throws GeneralSecurityException {
+            final HttpSession session, final NetHttpTransport httpTransport) throws GeneralSecurityException {
 
         String response = "errorOccurs";
         GoogleAuthorizationCodeFlow flow;
@@ -168,6 +172,7 @@ public class GoogleAccount {
                 authorizationUrl.setRedirectUri(buildRedirectUri(request, "/oAuth2Callback"));
                 // store userId in session for CallBack Access
                 session.setAttribute("userId", userKey);
+                //TODO gal by Djer |IDE| Supprime les "TO-DO automatiques" une fois que tu les as traités.
                 //TODO bam by Djer |API Google| Sauvegarde le "loginName" ici en session pour l'utiliser dans le oAuth2Callback
                 response = "redirect:" + authorizationUrl.build();
             }

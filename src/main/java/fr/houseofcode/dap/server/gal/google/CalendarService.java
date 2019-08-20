@@ -17,10 +17,10 @@ import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.Events;
 
+//TODO gal by Djer |Audit Code| (re)-active PMD et Checkstyle. Commentaire Javadoc (de classe) manquant.
 /**
  *
  * @author Alex
- *
  */
 @Service
 public class CalendarService {
@@ -54,9 +54,11 @@ public class CalendarService {
     /**
      * Allow the secured access to Calendar.
      * @return An instance CalendarService with secured transport.
-     * @throws IOException.
-     * @throws GeneralSecurityException.
+     * @throws IOException .
+     * @throws GeneralSecurityException .
      */
+    //TODO gal by Djer |Audit Code| (re)-active PMD et Checkstyle. Le paramètre userKeyName7 pourrait être final
+    //TODO gal by Djer |Audit Code| (re)-active PMD et Checkstyle. Commentaire Javadoc (de paramètres de méthode) manquant.
     private Calendar getService(String userKeyName7) throws IOException, GeneralSecurityException {
         final NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
         Calendar service = new Calendar.Builder(httpTransport, JSON_FACTORY,
@@ -67,11 +69,14 @@ public class CalendarService {
     /**
      * Display next event (Afficher le prochain évènement du calendar).
      * @return Next event (le prochain évènement du calendar).
-     * @throws IOException.
-     * @throws GeneralSecurityException.
+     * @throws IOException .
+     * @throws GeneralSecurityException .
      */
+    //TODO gal by Djer |Audit Code| (re)-active PMD et Checkstyle. Le paramètre userKeyName7 pourrait être final
+    //TODO gal by Djer |Audit Code| (re)-active PMD et Checkstyle. Commentaire Javadoc (de paramètres de méthode) manquant.
     public String getNextEvents(String userKeyName8) throws IOException, GeneralSecurityException {
 
+        //TODO gal by Djer |Log4J| Contextuzalise tes messages de log (e pour l'utilsiateur : " + userKeyName8)
         LOG.info("Récupération du prochain évènement de l'utilisateur");
 
         String nextEvent1 = "";
@@ -89,6 +94,7 @@ public class CalendarService {
                 if (start == null) {
                     start = event.getStart().getDate();
                 }
+                //TODO gal by Djer |POO| Un espace entre le "sumary" et le "start" rendrait plus lisible.
                 nextEvent1 = "Votre prochain évènement : " + event.getSummary() + start;
             }
         }
